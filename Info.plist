@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>zh_CN</string>
 	<key>CFBundleDisplayName</key>
-	<string>孕期全程日历</string>
+	<string>0到3岁日历</string>
 	<key>CFBundleExecutable</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleIconFile</key>
@@ -20,15 +20,15 @@
 	<array>
 		<dict>
 			<key>CFBundleURLName</key>
-			<string>com.mamashai.babycalendar</string>
+			<string>com.mamashai.yufree</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxf0f8850c3a525af7</string>
+				<string>wx15a9f4829379b46f</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleIdentifier</key>
-	<string>com.mamashai.babycalendar</string>
+	<string>com.mamashai.yufree</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
