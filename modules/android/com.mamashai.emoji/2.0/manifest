@@ -1,0 +1,18 @@
+#
+# this is your module manifest and used by Titanium
+# during compilation, packaging, distribution, etc.
+#
+version: 2.0
+apiversion: 2
+architectures: armeabi armeabi-v7a x86
+description: emoji
+author: Liumingxing
+license: MIT
+copyright: @mamashai.com
+
+# these should not be edited
+name: emoji
+moduleid: com.mamashai.emoji
+guid: 11ec66a9-1477-4db9-bfb4-36dea3000ed8
+platform: android
+minsdk: 3.1.1.GA

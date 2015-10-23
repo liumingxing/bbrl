@@ -1,0 +1,359 @@
+<html>
+<meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no" />
+<style>
+body{
+	margin:0;
+}
+.normal{
+	width:66px;
+	height:66px;
+	font-weight: bold;
+	float:left;
+	text-align:center;
+	line-height:66px;
+	background-color:#EEEEEE;
+	border: 1px solid #888;
+}
+
+#iphone {
+	width: 480px; 
+}
+
+.has{
+	background-image:url(has_480.png);
+}
+
+.thisMonth{
+	color:#434343;
+	font-family: Arial;
+	font-weight: bold;
+	font-size: 28px;
+}
+/*
+.thisMonth:hover{
+	background-image:url(monthdaytile_selected.png);
+	color:white;
+	background-position: 0px 0px;
+}
+*/
+.otherMonth{
+	color:#BDBDBD;
+	font-family: Arial;
+	font-size: 28px;
+}
+.today{
+	background-image:url(monthdaytiletoday.png);
+	-webkit-background-size: 100%;
+	color:white;
+	font-family: Arial;
+	font-size: 28px;
+}
+.todaySelected{
+	background-image:url(monthdaytiletoday_selected.png);
+	-webkit-background-size: 100%;
+	color:white;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 28px;
+}
+.selected{
+	background-image:url(monthdaytile_selected.png);
+	-webkit-background-size: 100%;
+	color:white;
+}
+.calendar{
+	top:75px;
+	width:480px;
+	position:absolute;
+}
+.current{
+	left:1px;
+}
+.next{
+	left:480px;
+}
+.prev{
+	left:-480px;
+}
+#titleBar{
+	background-image:url(monthgradient.png);
+	width:480px;
+	height:50px;
+}
+#next{
+	position:absolute;
+	top:0px;
+	right:0px;
+	height:60px;
+	text-align:right
+}
+#prev{
+	position:absolute;
+	top:0px;
+	left:0px;
+	height:60px;
+	text-align:left
+}
+#title{
+	position:absolute;
+	top:0px;
+	text-align:center;
+	height:52px;
+	width:480px;
+	line-height:60px;
+	color: #EA609E;
+	font-family: "微软雅黑";
+	font-size: 27px;
+	font-weight: normal;
+}
+.daysOfTheWeek{
+	width:68px;
+	height:30px;
+	float:left;
+	text-align:center;
+	font-family: "微软雅黑";
+	font-weight: bold;
+	font-size: 16px;
+	color: #999999;
+}
+</style>
+<script>
+start = function(){
+ //document.ontouchmove = function(e){ e.preventDefault();}
+	//set today's calendar days 
+	var setDate = new Date();
+	a = setDate.getFullYear();
+	b = setDate.getMonth();
+	c = setDate.getDate();
+	var todayMonth = b;
+	var todayYear = a;
+	
+	//create indivudual days
+	calDay = function(e){
+		calendarDay = document.createElement('div');
+		calendarDay.setAttribute('class','normal '+e.month);
+		calendarDay.month = e.month;
+		calendarDay.innerHTML = e.day;
+		return calendarDay;
+	}
+	//month name
+	monthName = function(e){
+		switch(e){
+			case 0: e='一月'; break;
+			case 1: e='二月'; break;
+			case 2: e='三月'; break;
+			case 3: e='四月'; break;
+			case 4: e='五月'; break;
+			case 5: e='六月'; break;
+			case 6: e='七月'; break;
+			case 7: e='八月'; break;
+			case 8: e='九月'; break;
+			case 9: e='十月'; break;
+			case 10: e='十一月'; break;
+			case 11: e='十二月'; break;
+		};
+		return e;
+	};
+	
+	var iphone = document.getElementById('iphone');
+	var next = document.getElementById('next');
+	var prev = document.getElementById('prev');
+	var title = document.getElementById('title');
+	
+	var select_date = ""
+	//设置当前有日记的日期
+	Ti.App.addEventListener("set_select", function(e) {
+       select_date += e.str;
+       mark_date();
+    });
+    
+    Ti.App.addEventListener("clear_select", function(e){
+    	select_date = ""
+    	$(".has").removeClass("has");
+    })
+    
+	function mark_date(){
+		$("div.normal").each(function(){
+			var day_div = $(this);
+			var year = a;
+			var month = b;
+			
+			var day = day_div.text();
+			if (day_div.hasClass("otherMonth")){
+				if (parseInt(day) > 10){
+					month -= 1;
+					if (month < 0){
+						month += 12;
+						year -= 1;
+					}
+				}
+				else if (parseInt(day) < 10){
+					month += 1;
+					if (month >= 12){
+						month -= 12
+						year += 1;
+					}
+				}
+			}
+			
+			var month_str = month+1;
+			if (month_str<10)
+				month_str = "0" + month_str
+			var day_str = day;
+			if (parseInt(day) < 10)
+				day_str = "0" + parseInt(day)
+			var str = year + "-" + month_str + "-" + day_str;
+			
+			if (select_date.indexOf(str) >= 0){
+				day_div.addClass('has');	
+			}
+			
+		})
+	}
+	//create the calendar main view/div
+	calView = function(e){
+		title.innerHTML = a + ' ' + monthName(b);
+		var daysInMonth = 32 - new Date(e.a,e.b,32).getDate();
+		var dayOfMonth = new Date(e.a,e.b,e.c).getDate();
+		var dayOfWeek = new Date(e.a,e.b,1).getDay(); 
+		var daysInLastMonth = 32 - new Date(e.a,e.b-1,32).getDate();
+		var daysInNextMonth = (new Date(e.a,e.b,daysInMonth).getDay())-6;
+		
+		calendarDiv = document.createElement('div');
+		calendarDiv.setAttribute('id','cal');
+		calendarDiv.setAttribute('class','calendar '+e.which);
+		
+		var dayNumber = daysInLastMonth-dayOfWeek+1;
+		//get last month's days
+		for(i=0;i<dayOfWeek;i++){
+			calendarDiv.appendChild(new calDay({day:dayNumber,month:'otherMonth',dayOfMonth:''}));
+			dayNumber++;
+		};
+		// reset day number for current month
+		dayNumber = 1;
+		//get this month's days
+		for(i=0;i<daysInMonth;i++){
+			var newDay=new calDay({day:dayNumber,month:'thisMonth',dayOfMonth:dayOfMonth});
+			calendarDiv.appendChild(newDay);
+			if(newDay.innerHTML == dayOfMonth && e.a == todayYear && e.b == todayMonth){
+				calendarDay.setAttribute('class','normal today todaySelected');		
+				var oldDay = newDay;
+			}
+			dayNumber++;
+		};
+		dayNumber = 1;
+		//get remaining month's days
+		for(i=0;i>daysInNextMonth;i--){
+			calendarDiv.appendChild(new calDay({day:dayNumber,month:'otherMonth',dayOfMonth:''}));
+			dayNumber++;
+		};
+		if(!oldDay){var oldDay = document.createElement('div');}		
+		calendarDiv.addEventListener('click',function(e){
+			if(e.target.month == 'thisMonth'){
+				if(oldDay.innerHTML == dayOfMonth){
+					//oldDay.setAttribute('class','normal today');
+					$(oldDay).removeClass("todaySelected")		
+				} else {
+					//oldDay.setAttribute('class','normal thisMonth');
+					$(oldDay).removeClass("selected")		
+				}
+				if(e.target.innerHTML == dayOfMonth){
+					//e.target.setAttribute('class','normal today todaySelected');
+					$(e.target).addClass('todaySelected')	
+				} else {
+					//e.target.setAttribute('class','normal thisMonth selected');
+					$(e.target).addClass('selected')
+				}
+				Ti.App.fireEvent('show_date',{date: a + "-" + (b+1)+'-'+e.target.innerHTML});
+				
+				oldDay = e.target;
+			}
+		});
+		var shadow = document.createElement('div');
+		shadow.style.width='322px';
+		//shadow.style.height='18px';
+		shadow.style.height='0px';
+		shadow.style.float='left';
+		shadow.style.backgroundImage='url(monthshadow.png)';
+		calendarDiv.appendChild(shadow);
+		return calendarDiv;
+	};
+	
+	var cal = new calView({which:'current',a:a,b:b,c:c});
+	iphone.appendChild(cal);
+	
+	next.addEventListener('click',function(){	
+		b++;
+		if(b > 11){ b = b-12; a++;}
+		var cal1 = new calView({which:'next',a:a,b:b,c:c});
+		iphone.appendChild(cal1);
+		var moveLeft = '';
+		moveLeft=moveLeft+'width:480px;';
+        moveLeft=moveLeft+'-webkit-transform: translate(-480px, 0px);';
+        moveLeft=moveLeft+'-webkit-transition-duration: .35s, .35s;';
+        moveLeft=moveLeft+'-webkit-transition-property: -webkit-transform, opacity;';
+        moveLeft=moveLeft+'-webkit-transition-timing-function: ease-in-out, linear;';
+        moveLeft=moveLeft+'opacity: 1;';
+        moveLeft=moveLeft+'visibility: visible';
+		setTimeout(function(){
+			cal1.style.cssText= moveLeft;
+			cal.style.cssText= moveLeft;
+		},1);
+		setTimeout(function(){
+			iphone.removeChild(cal);
+			cal = new calView({which:'current',a:a,b:b,c:c});
+			iphone.removeChild(cal1);
+			iphone.appendChild(cal);
+			mark_date();
+		},350);
+	});
+	prev.addEventListener('click',function(){	
+		b--;
+		if(b < 0){ b = b+12;a--;}
+		var cal1 = new calView({which:'prev',a:a,b:b,c:c});
+		iphone.appendChild(cal1);
+		var moveRight = '';
+		moveRight=moveRight+'width:480px;';
+        moveRight=moveRight+'-webkit-transform: translate(480px, 0px);';
+        moveRight=moveRight+'-webkit-transition-duration: .35s, .35s;';
+        moveRight=moveRight+'-webkit-transition-property: -webkit-transform, opacity;';
+        moveRight=moveRight+'-webkit-transition-timing-function: ease-in-out, linear;';
+        moveRight=moveRight+'opacity: 1;';
+        moveRight=moveRight+'visibility: visible';
+		setTimeout(function(){
+			cal1.style.cssText= moveRight;
+			cal.style.cssText= moveRight;
+		},1);
+		setTimeout(function(){
+			iphone.removeChild(cal);
+			cal = new calView({which:'current',a:a,b:b,c:c});
+			iphone.removeChild(cal1);
+			iphone.appendChild(cal);
+			mark_date();
+		},350);
+	});
+};
+</script>
+<body onLoad="start()">
+		<div id="iphone">
+			<div id="titleBar">
+				<div id="title"></div>
+				<div id='next'>
+					<img src="next.png" width="30px" style="margin-top:7px;margin-right:10px" / >
+				</div>
+				<div id='prev'>
+					<img src="prev.png" width="30px" style="margin-top:7px;margin-left:10px" / >
+				</div>
+				<div style="position:relative;top:45;width:480;left:-1">
+					<div class="daysOfTheWeek">周日</div>
+					<div class="daysOfTheWeek">周一</div>
+					<div class="daysOfTheWeek">周二</div>
+					<div class="daysOfTheWeek">周三</div>
+					<div class="daysOfTheWeek">周四</div>
+					<div class="daysOfTheWeek">周五</div>
+					<div class="daysOfTheWeek">周六</div>
+				</div>
+		</div>
+		</div>
+</body>
+<script type='text/javascript' src='../images/zepto.js'></script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html PUBLIC '-//W3C//DTD XHTML 1.0 Strict//EN' 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'>
+<html xmlns='http://www.w3.org/1999/xhtml'>
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<head>
+		<style>
+			* {margin: 0; padding: 0; font-size: 1em;}
+			#main {margin: 0px; line-height: 130%; }
+			h1 {font-size: 1.4em; text-align: left; font-weight: normal; margin: 0.1em; line-height: 130%;}
+			body{margin: 1em 1em; padding: 0px;}
+			img {width: 100%;}
+			p {line-height: 150%;}
+			p.refer {color: #666; font-size: 0.9em; line-height: 3em; margin-bottom: 1em;}
+		</style>
+		<script>
+			var platform = "";
+			var width = "";
+			function __set_web_content(e) {
+				platform = e.platform;
+				width = e.width;
+				if(document.getElementById('main').innerHTML.length == 0)
+					set_content(e.content, e.id);
+            }
+			Ti.App.addEventListener("setWebContent", __set_web_content);
+			window.onbeforeunload = function(){
+				Ti.App.removeEventListener("setWebContent", __set_web_content);
+			};
+            
+			function set_content(content, id){
+				document.getElementById('main').innerHTML = content;
+                if (platform != "android"){
+                	Ti.App.fireEvent('set_height', {height: get_main_height(), id: id, index: 0});
+                	setTimeout(function(){
+                		Ti.App.fireEvent('set_height', {height: get_main_height(), id: id, index: 0});
+                	}, 1000);
+                	setTimeout(function(){
+                		Ti.App.fireEvent('set_height', {height: get_main_height(), id: id, index: 0});
+                	}, 2000);
+	            }
+                if (get_main_height() < 300){
+                	document.ontouchmove = function(e){ e.preventDefault();}
+                }
+			}
+			
+			function get_main_height(){
+				return document.getElementById('main').offsetHeight + 10;
+			}
+		</script>
+	</head>
+	<body>
+		<div id="main" ></div>
+	</body>
+</html>
