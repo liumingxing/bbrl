@@ -195,7 +195,6 @@
         <module platform="android" version="4.0">com.mamashai.tiwechat</module>
         <module platform="iphone" version="6.0">ti.flurry</module>
         <module platform="android">jp.co.so2.pinch</module>
-        <module platform="android">tjatse.pullrefresh</module>
     </modules>
     <property name="appc-app-id" type="string">556ab1f6f6f1562d3d7fd4cd</property>
 </ti:app>
