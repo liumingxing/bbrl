@@ -1,42 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ti:app xmlns:ti="http://ti.appcelerator.org">
+    <property name="ti.android.runtime">v8</property>
     <property name="ti.android.bug2373.finishfalseroot" type="bool">true</property>
-    <property name="GCM_sender_id" type="string">778201805297</property>
-    <modules>
-        <module platform="android">com.mamashai.emoji</module>
-        <module platform="android">tjatse.photo</module>
-        <module platform="android">tjatse.pullrefresh</module>
-        <module platform="iphone" version="3.0">com.mamashai.tiwechat</module>
-        <module platform="android" version="3.0.8">com.mamashai.jpush</module>
-        <module platform="android">fh.imagefactory</module>
-        <module platform="android" version="2.2.1">ti.imagefactory</module>
-        <module platform="android" version="5.0">sg.flurry</module>
-        <module platform="android" version="2.0.1">ti.styledlabel</module>
-        <module platform="iphone" version="1.2.0">ti.imagefactory</module>
-        <module platform="android" version="1.0.0">com.mamashai.alipay</module>
-        <module platform="iphone" version="0.1">my.media</module>
-        <module platform="android" version="0.1">jp.co.so2.pinch</module>
-        <module platform="iphone" version="1.6.1">ti.styledlabel</module>
-        <module platform="iphone" version="1.0.0">com.mamashai.alipay</module>
-        <module platform="android" version="4.0">com.mamashai.tiwechat</module>
-        <module platform="iphone" version="6.0">ti.flurry</module>
-        <module platform="android">com.rkam.swiperefreshlayout</module>
-    </modules>
+    <property name="ti.android.useLegacyWindow" type="bool">true</property>
+    <!-- put your sender_id here -->
+    <!--
+    <property name="ti.deploytype">distribution</property><property name="ti.android.compilejs" type="bool">true</property><property name="ti.android.bug2373.finishfalseroot" type="bool">false</property><property name="ti.android.bug2373.disableDetection" type="bool">true</property>
+    -->
     <deployment-targets>
-        <target device="tizen">false</target>
         <target device="mobileweb">false</target>
         <target device="iphone">true</target>
         <target device="ipad">true</target>
         <target device="android">true</target>
     </deployment-targets>
     <sdk-version>4.0.0.GA</sdk-version>
-    <id>com.mamashai.yunfree</id>
-    <name>yun</name>
-    <version>4.0</version>
+    <id>com.mamashai.babycalendar</id>
+    <name>babycalendar</name>
+    <version>3.5</version>
     <publisher>liumeisei</publisher>
     <url>http://www.mamashai.com</url>
-    <description>not specified</description>
-    <copyright>2012 by liumeisei</copyright>
+    <description>baby calendar</description>
+    <copyright>2012 by mamashai.com</copyright>
     <icon>appicon.png</icon>
     <persistent-wifi>false</persistent-wifi>
     <prerendered-icon>false</prerendered-icon>
@@ -45,7 +29,7 @@
     <fullscreen>false</fullscreen>
     <navbar-hidden>true</navbar-hidden>
     <analytics>false</analytics>
-    <guid>08a3932e-219b-4e28-9bbb-6d48b9b5f5ef</guid>
+    <guid>01b3bc25-0978-4973-9333-da8b308a7ae0</guid>
     <ios>
         <plist>
             <dict>
@@ -58,11 +42,9 @@
             </dict>
         </plist>
     </ios>
-    <property name="ti.ui.defaultunit">system</property>
     <iphone>
         <orientations device="iphone">
             <orientation>Ti.UI.PORTRAIT</orientation>
-            <orientation>Ti.UI.UPSIDE_PORTRAIT</orientation>
         </orientations>
         <orientations device="ipad">
             <orientation>Ti.UI.PORTRAIT</orientation>
@@ -74,19 +56,20 @@
         <!--
         <tool-api-level>8</tool-api-level>
         -->
-        <manifest android:versionCode="100" android:versionName="4.0">
+        <manifest android:versionCode="100" android:versionName="3.5" package="com.mamashai.babycalendar">
             <uses-sdk android:minSdkVersion="10" android:targetSdkVersion="21"/>
             <supports-screens android:anyDensity="true"
-                android:screenOrientation="portrait" android:smallScreens="false"/>
+                android:largeScreens="true" android:normalScreens="true"
+                android:screenOrientation="portrait" android:smallScreens="true"/>
             <application android:debuggable="false"
                 android:hardwareAccelerated="true"
                 android:icon="@drawable/appicon"
                 android:label="@string/app_name"
-                android:name="YunApplication" android:theme="@style/Mamashai">
-                <activity android:alwaysRetainTaskState="false"
-                    android:configChanges="keyboardHidden|keyboard"
+                android:name="BabycalendarApplication" android:theme="@style/Mamashai">
+                <activity
+                    android:configChanges="keyboardHidden|screenSize"
                     android:label="@string/app_name"
-                    android:name=".YunActivity"
+                    android:name=".BabycalendarActivity"
                     android:screenOrientation="portrait" android:theme="@style/Theme.Titanium">
                     <intent-filter>
                         <action android:name="android.intent.action.MAIN"/>
@@ -120,7 +103,7 @@
                         <!--since 1.3.5 -->
                         <action android:name="cn.jpush.android.intent.NOTIFICATION_RECEIVED_PROXY"/>
                         <!--since 1.3.5 -->
-                        <category android:name="com.mamashai.yunfree"/>
+                        <category android:name="com.mamashai.babycalendar"/>
                         <!--since 1.3.5 -->
                     </intent-filter>
                     <!--since 1.3.5 -->
@@ -149,17 +132,7 @@
                         <!--Optional 用户接受Rich Push Javascript 回调函数的intent-->
                         <action android:name="cn.jpush.android.intent.CONNECTION"/>
                         <!-- 接收网络变化 连接/断开 since 1.6.3 -->
-                        <category android:name="com.mamashai.yunfree"/>
-                    </intent-filter>
-                    <!--since 1.3.5 -->
-                    <intent-filter>
-                        <action android:name="android.intent.action.USER_PRESENT"/>
-                        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
-                    </intent-filter>
-                    <intent-filter>
-                        <action android:name="android.intent.action.PACKAGE_ADDED"/>
-                        <action android:name="android.intent.action.PACKAGE_REMOVED"/>
-                        <data android:scheme="package"/>
+                        <category android:name="com.mamashai.babycalendar"/>
                     </intent-filter>
                 </receiver>
                 <!-- Required SDK核心功能-->
@@ -169,7 +142,7 @@
                     <intent-filter>
                         <action android:name="cn.jpush.android.ui.PushActivity"/>
                         <category android:name="android.intent.category.DEFAULT"/>
-                        <category android:name="com.mamashai.yunfree"/>
+                        <category android:name="com.mamashai.babycalendar"/>
                     </intent-filter>
                 </activity>
                 <!-- Required SDK核心功能-->
@@ -183,18 +156,15 @@
                 <!-- 发到其他市场的 APK 可以设置为 xxx-market。 -->
                 <!-- 目前这个渠道统计功能的报表还未开放。-->
                 <meta-data android:name="JPUSH_CHANNEL" android:value="c_1980"/>
-                <meta-data android:name="JPUSH_APPKEY" android:value="9c75b77425cb280bc1c975fe"/>
+                <meta-data android:name="JPUSH_APPKEY" android:value="b789c8ed387ca31a1569c932"/>
             </application>
             <!--
             <uses-sdk android:targetSdkVersion="11"/>
             -->
-            <!--
-            <uses-sdk android:targetSdkVersion="11"/>
-            -->
             <permission
-                android:name="com.mamashai.yunfree.permission.JPUSH_MESSAGE" android:protectionLevel="signature"/>
+                android:name="com.mamashai.babycalendar.permission.JPUSH_MESSAGE" android:protectionLevel="signature"/>
             <!-- Required -->
-            <uses-permission android:name="com.mamashai.yunfree.permission.JPUSH_MESSAGE"/>
+            <uses-permission android:name="com.mamashai.babycalendar.permission.JPUSH_MESSAGE"/>
             <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT"/>
             <uses-permission android:name="android.permission.INTERNET"/>
             <uses-permission android:name="android.permission.WAKE_LOCK"/>
@@ -207,13 +177,24 @@
             <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
         </manifest>
     </android>
-    <mobileweb>
-        <precache/>
-        <splash>
-            <enabled>true</enabled>
-            <inline-css-images>true</inline-css-images>
-        </splash>
-        <theme>default</theme>
-    </mobileweb>
-    <property name="appc-app-id" type="string">556febb320bb10c003c95b21</property>
+    <modules>
+        <module platform="android">com.mamashai.emoji</module>
+        <module platform="android">tjatse.photo</module>
+        <module platform="iphone" version="3.0">com.mamashai.tiwechat</module>
+        <module platform="android">fh.imagefactory</module>
+        <module platform="android" version="2.2.1">ti.imagefactory</module>
+        <module platform="android" version="5.0">sg.flurry</module>
+        <module platform="android" version="2.0.1">ti.styledlabel</module>
+        <module platform="iphone" version="1.2.0">ti.imagefactory</module>
+        <module platform="android" version="1.0.0">com.mamashai.alipay</module>
+        <module platform="android">com.rkam.swiperefreshlayout</module>
+        <module platform="iphone" version="0.3">my.media</module>
+        <module platform="iphone" version="1.6.1">ti.styledlabel</module>
+        <module platform="android">com.mamashai.jpush</module>
+        <module platform="iphone" version="1.0.0">com.mamashai.alipay</module>
+        <module platform="android" version="4.0">com.mamashai.tiwechat</module>
+        <module platform="iphone" version="6.0">ti.flurry</module>
+        <module platform="android">jp.co.so2.pinch</module>
+    </modules>
+    <property name="appc-app-id" type="string">556ab1f6f6f1562d3d7fd4cd</property>
 </ti:app>
