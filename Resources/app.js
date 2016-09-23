@@ -80,7 +80,8 @@ function make_bottom_tab_window(arrs, current_index){
 	  	 var window = new arrs[current_index].klass({
 	  	 	title: arrs[current_index].text,
 	  	 	__index : current_index,
-	  	 	theme: current_index == 0 ? "MyTheme1" : "MyTheme2"
+	  	 	theme: current_index == 0 ? "MyTheme1" : "MyTheme2",
+	  	 	orientationModes: [Ti.UI.PORTRAIT, Ti.UI.UPSIDE_PORTRAIT]
 	  	 });
 	  	 
 	  	 var wrapper = Ti.UI.createView({
