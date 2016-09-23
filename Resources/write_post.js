@@ -77,7 +77,8 @@ function WritePost(attr){
 	
 	var textarea = createEmojiTextArea({
 		value : win.text.replace(/(^\s*)|(\s*$)/g, "")||"",
-		height : __l(140),
+		//height : __l(140),
+		bottom: __l(100),
 		left : __l(1),
 		right : __l(1),
 		top : __l(2),
@@ -121,18 +122,6 @@ function WritePost(attr){
 	}
 	
 	textarea.addEventListener("change", function(e) {
-		//if(textarea.value.length > 140)
-		//	textarea.value = textarea.value.substr(0, 140)
-		title.text = 140 - textarea.value.length;
-		if(textarea.value.length > 140){
-			title.color = "red";
-			title.show();
-		}
-		else{
-			title.color = "#999";
-			title.hide();
-		}
-		
 		if(textarea.value.length == 0){
 			done.enabled = false;
 		}
@@ -476,19 +465,6 @@ function WritePost(attr){
 	
 	icon_container.add(show_face);
 	
-	var title = Ti.UI.createLabel({
-		right : __l(106),
-		top: __l(15),
-		textAlign : "center",
-		height : 'auto',
-		color: '#999',
-		font : {
-			fontSize : __l(13)
-		},
-		text : "140"
-	});
-	icon_container.add(title);
-	
 	var sync = Ti.UI.createLabel({
 		right : __l(74),
 		top : __l(10),
@@ -666,11 +642,6 @@ function WritePost(attr){
 	done.addEventListener("click", function() {
 		if (!textarea.value || textarea.value.length == 0){
 			show_alert("提示", "请输入文字");
-			return;
-		}
-		
-		if (textarea.value.length > 140){
-			show_alert("提示", "字符超出长度了");
 			return;
 		}
 		
