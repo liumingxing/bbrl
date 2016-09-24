@@ -10,10 +10,10 @@
         <target device="ipad">true</target>
         <target device="android">true</target>
     </deployment-targets>
-    <sdk-version>4.0.0.GA</sdk-version>
+    <sdk-version>5.4.0.GA</sdk-version>
     <id>com.mamashai.yufree</id>
     <name>yu</name>
-    <version>5.5.1</version>
+    <version>5.5.2</version>
     <publisher>liumeisei</publisher>
     <url>http://</url>
     <description>not specified</description>
