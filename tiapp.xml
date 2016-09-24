@@ -13,10 +13,10 @@
         <target device="ipad">true</target>
         <target device="android">true</target>
     </deployment-targets>
-    <sdk-version>4.0.0.GA</sdk-version>
+    <sdk-version>5.4.0.GA</sdk-version>
     <id>com.mamashai.babycalendar</id>
     <name>babycalendar</name>
-    <version>3.5</version>
+    <version>3.6</version>
     <publisher>liumeisei</publisher>
     <url>http://www.mamashai.com</url>
     <description>baby calendar</description>
