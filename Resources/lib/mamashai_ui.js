@@ -807,7 +807,7 @@ Mamashai.ui.make_weibo_row = function(json) {
 			font : {
 				fontSize : __l(16)
 			},
-			text : json.content
+			text : json.content.length > 200 ? json.content.substr(0, 200) + "..." : json.content
 	});
 	
 	post.add(content);
