@@ -21,7 +21,7 @@ else if (Ti.App.id == "com.mamashai.yufree")
 
 Ti.App.mamashai = "http://www.mamashai.com";
 
-Ti.App.aliyun = "http://img.mamashai.com";
+Ti.App.aliyun = "http://mamashai-videos.img-cn-qingdao.aliyuncs.com";
 
 Ti.App.bar_color = "#EA609E";
 
