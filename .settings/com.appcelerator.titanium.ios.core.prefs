@@ -1,9 +1,9 @@
 eclipse.preferences.version=1
 iosLaunchConfigurationAttributes/ATTR_MINIFY=true
-iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=bbrl_yun
+iosLaunchConfigurationAttributes/ATTR_PROJECT_NAME=bbrl_git
 iosLaunchConfigurationAttributes/ATTR_UPLOAD_DEBUG_SYMBOLS=false
 iosLaunchConfigurationAttributes/appid=com.mamashai.yunfree
 iosLaunchConfigurationAttributes/certificate=Mamashai.com Co., Ltd. (Q2V9HEDR55)
 iosLaunchConfigurationAttributes/keychain=
-iosLaunchConfigurationAttributes/sdk_version=8.4
-iosLaunchConfigurationAttributes/uuid=6eee8eac-8e85-4eca-8e26-7c88e52d3048
+iosLaunchConfigurationAttributes/sdk_version=9.3
+iosLaunchConfigurationAttributes/uuid=8e81544c-0da6-4c0e-a515-f9d44bfe6bd1
