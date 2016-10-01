@@ -16,7 +16,7 @@
     <sdk-version>5.4.0.GA</sdk-version>
     <id>com.mamashai.babycalendar</id>
     <name>babycalendar</name>
-    <version>3.6</version>
+    <version>3.6.2</version>
     <publisher>liumeisei</publisher>
     <url>http://www.mamashai.com</url>
     <description>baby calendar</description>
@@ -181,6 +181,7 @@
         <module platform="android">com.mamashai.emoji</module>
         <module platform="android">tjatse.photo</module>
         <module platform="iphone" version="3.0">com.mamashai.tiwechat</module>
+        <module platform="android" version="4.0">com.mamashai.tiwechat</module>
         <module platform="android">fh.imagefactory</module>
         <module platform="android" version="2.2.1">ti.imagefactory</module>
         <module platform="android" version="5.0">sg.flurry</module>
@@ -192,7 +193,6 @@
         <module platform="iphone" version="1.6.1">ti.styledlabel</module>
         <module platform="android">com.mamashai.jpush</module>
         <module platform="iphone" version="1.0.0">com.mamashai.alipay</module>
-        <module platform="android" version="4.0">com.mamashai.tiwechat</module>
         <module platform="iphone" version="6.0">ti.flurry</module>
         <module platform="android">jp.co.so2.pinch</module>
     </modules>

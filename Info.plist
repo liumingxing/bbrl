@@ -50,7 +50,11 @@
 	<string>UIStatusBarStyleDefault</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>weixin</string>
+	</array>
 	<key>Aviary-API-Key</key>
-    <string>626c05f10</string>
+	<string>626c05f10</string>
 </dict>
 </plist>
